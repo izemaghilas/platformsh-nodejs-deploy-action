@@ -25,7 +25,9 @@ runs:
     - uses: adam7/platformsh-cli-action@v1.2
       with:
         token: ${{ inputs.cli-token }}
-    - run: ${{ github.action_path }}/deploy.sh
+    - run: |
+        chmod +x ${GITHUB_ACTION_PATH}/deploy.sh 
+        bash ${GITHUB_ACTION_PATH}/deploy.sh
       shell: bash
       env:
         SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
